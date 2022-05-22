@@ -12,7 +12,7 @@ import { site_api } from "config";
 
 import { useSpring, animated } from 'react-spring'
 import { Box, Chip } from "@mui/material";
-import styles from './card.module.css'
+import styles from '../../styles/card.module.css'
 
 const fetchPublicById = (id:number) => {
   const res = axios.get(`${site_api}publics/${id}`).then(({ data }) => data);
