@@ -1,6 +1,6 @@
 import { useQuery} from "react-query";
 import axios from "axios";
-import CardPlay from "../card";
+import CardPlay from "../cards/card_play";
 import { site_api } from "../../config";
 import { Play } from "types/wp";
 import React from "react";

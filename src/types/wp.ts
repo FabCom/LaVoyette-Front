@@ -19,3 +19,8 @@ export interface Play {
   publics: number[];
   tags_plays: number[];
 }
+
+export interface Artist {
+	title: Rendered;
+	content: Rendered;
+}
