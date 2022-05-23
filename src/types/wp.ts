@@ -24,3 +24,8 @@ export interface Artist {
 	title: Rendered;
 	content: Rendered;
 }
+
+export interface Partner {
+	title: Rendered;
+  featured_media: number;
+}
