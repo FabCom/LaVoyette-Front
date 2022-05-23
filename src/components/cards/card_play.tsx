@@ -27,7 +27,9 @@ const fetchTagsById = (id:number) => {
 
 const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds}: {title: string, content: string, imgId: number, duration: number | null, publicIds: number[], tagIds: number[]}) => {
   
-  const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 600 })
+  const props_poster = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 500 })
+  const props_info = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 650 })
+  const props_abstract = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 800 })
   
   const { data: imgSrc } = useQuery(
     ["image", imgId],
@@ -67,15 +69,18 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds}: {ti
       </CardContent>
       <CardContent sx={{width:'100%', display: "flex", flexDirection: 'row', justifyContent:'center'}}>
         <Box sx={{width: '30%'}}>
-          <CardMedia
-            component="img"
-            className={styles.card}
-            image={imgSrc ? imgSrc.data.guid.rendered : null}
-            alt="Photo mise en avant"
+          <animated.div style={props_poster}>
+            <CardMedia
+              component="img"
+              className={styles.card}
+              image={imgSrc ? imgSrc.data.guid.rendered : null}
+              alt="Photo mise en avant"
 
-          />
-            <Card sx={{ maxWidth: '100%', display: "flex", flexDirection: 'column' }}>
-              {duration && 
+            />
+          </animated.div>
+          <animated.div style={props_info}>
+            <Card sx={{ maxWidth: '100%', display: "flex", flexDirection: 'column', mt: 3 }}>
+            {duration && 
               <CardContent >
                 <Typography gutterBottom variant="body1" component="div">
                   Durée : <Chip label={duration + " mn"} />
@@ -101,9 +106,10 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds}: {ti
                 </Typography>
               </CardContent>
             </Card>
+          </animated.div>
         </Box>
         <Box sx={{width: '70%', ml: 2}}>
-          <animated.div style={props}>
+          <animated.div style={props_abstract}>
             {parse(content)}
           </animated.div>
         </Box>
