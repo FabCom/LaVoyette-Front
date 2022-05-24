@@ -25,7 +25,7 @@ const fetchTagsById = (id:number) => {
 };
 
 
-const CardPlay = ({title, content, imgId, duration, publicIds, tagIds}: {title: string, content: string, imgId: number, duration: number, publicIds: number[], tagIds: number[]}) => {
+const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds}: {title: string, content: string, imgId: number, duration: number | null, publicIds: number[], tagIds: number[]}) => {
   
   const props_poster = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 500 })
   const props_info = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 650 })
@@ -80,11 +80,13 @@ const CardPlay = ({title, content, imgId, duration, publicIds, tagIds}: {title: 
           </animated.div>
           <animated.div style={props_info}>
             <Card sx={{ maxWidth: '100%', display: "flex", flexDirection: 'column', mt: 3 }}>
+            {duration && 
               <CardContent >
                 <Typography gutterBottom variant="body1" component="div">
                   Durée : <Chip label={duration + " mn"} />
                 </Typography>
               </CardContent>
+              }
               <CardContent >
                 <Typography gutterBottom variant="body1" component="div">
                   Public : {

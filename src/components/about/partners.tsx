@@ -28,7 +28,7 @@ const Partners = () => {
   return (
     <React.Fragment>
       {!partners &&  <p>{message}</p>}
-      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '80%'}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '80%', justifyContent: 'center'}}>
         {partners?.map((partner, i: number) => 
           <CardPartner key={i} title={partner.title.rendered} imgId={partner.featured_media}/>
         )}

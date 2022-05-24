@@ -28,9 +28,9 @@ const Artists = () => {
   return (
     <React.Fragment>
       {!artists &&  <p>{message}</p>}
-      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '80%'}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '90%', justifyContent: 'center'}}>
         {artists?.map((artist, i: number) => 
-          <CardArtist key={i} name={artist.title.rendered} bio={artist.content.rendered}/>
+          <CardArtist key={i} name={artist.title.rendered} bio={artist.content.rendered} imgId={artist.featured_media}/>
         )}
       </Box>
     </React.Fragment>
