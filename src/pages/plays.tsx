@@ -1,10 +1,10 @@
+import React, { useEffect, useState } from "react";
 import { useQuery} from "react-query";
 import axios from "axios";
 import { Play } from "types/wp";
-import React from "react";
 import { site_api } from "config";
-import CardPlay from "components/card";
-import { Box } from "@mui/material";
+import CardPlay from "components/cards/card_play";
+import DefaultLayout from "components/layouts/default";
 
 const Plays: React.FC = () => {
   const { isLoading, error, data: plays, isFetching } = useQuery<Play[], Error>("PlaysData", () =>
@@ -12,29 +12,27 @@ const Plays: React.FC = () => {
       site_api +"plays"
     ).then((res) => res.data)
   );
+  
+  const [message, setMessage] = useState('')
 
-  if (isLoading) {
-    return (
-      <React.Fragment>
-        "Loading..."
-      </React.Fragment> 
-    )
-  }
-
-  if (error) {
-    return (
-      <React.Fragment>
-        "An error has occurred: " + error.message;
-      </React.Fragment> 
-    )
-  }  
+  useEffect(() => { 
+    if (isLoading) {
+      setMessage("Loading...")
+    } 
+  
+    if (error) {
+      setMessage("An error has occurred: " + error.message)
+    }  
+  }, [error, isLoading]);
+  
   
   return (
-    <Box sx={{display: "flex", flexDirection: "column", width: "100%", alignItems: "center"}}>
+    <DefaultLayout title='Nos spectacles'>
+      {!plays &&   <p>{message}</p>}
       {plays?.map((play, i: number) => 
-        <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays}/>
+        <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays} gallery={play.acf.gallery}/>
       )}
-    </Box>
+    </DefaultLayout>
   );
 }
 
