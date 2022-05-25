@@ -30,7 +30,7 @@ const Plays: React.FC = () => {
     <DefaultLayout title='Nos spectacles'>
       {!plays &&   <p>{message}</p>}
       {plays?.map((play, i: number) => 
-        <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays}/>
+        <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays} gallery={play.acf.gallery}/>
       )}
     </DefaultLayout>
   );
