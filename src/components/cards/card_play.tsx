@@ -13,6 +13,7 @@ import { site_api } from "config";
 import { useSpring, animated } from 'react-spring'
 import { Box, Chip } from "@mui/material";
 import styles from '../../styles/card.module.css'
+import { flexbox, maxHeight } from "@mui/system";
 
 const fetchPublicById = (id:number) => {
   const res = axios.get(`${site_api}publics/${id}`).then(({ data }) => data);
@@ -24,8 +25,13 @@ const fetchTagsById = (id:number) => {
   return res 
 };
 
+const fetchMediaById = (id:number) => {
+  const res = axios.get(`${site_api}media/${id}`).then(({ data }) => data);
+  return res 
+};
 
-const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds}: {title: string, content: string, imgId: number, duration: number | null, publicIds: number[], tagIds: number[]}) => {
+
+const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gallery}: {title: string, content: string, imgId: number, duration: number | null, publicIds: number[], tagIds: number[], gallery: number[]}) => {
   
   const props_poster = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 500 })
   const props_info = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 650 })
@@ -58,8 +64,16 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds}: {ti
       }
     })
   );
-  console.log(publics)
-  
+
+  const medias = useQueries(
+    gallery.map(media => {
+      return {
+        queryKey: ['gallery', media],
+        queryFn: () => fetchMediaById(media)
+      }
+    })
+  );
+  // console.log(medias)
   return (
     <Card sx={{ maxWidth: '80%', display: "flex", flexDirection: 'column', mt: 5, alignItems: "center" }}>
       <CardContent>
@@ -112,8 +126,21 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds}: {ti
           <animated.div style={props_abstract}>
             {parse(content)}
           </animated.div>
+          <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+            {medias.map(media => 
+              <Box sx={{display: 'flex', flexDirection: 'row', maxHeight: 200, maxWidth: 300, flexWrap: 'wrap', m: 1}}>
+                <CardMedia
+                component="img"
+                className={styles.card}
+                image={media.data?.guid.rendered}
+                alt="Photo mise en avant"
+                />
+              </Box>
+              )}
+          </Box>
         </Box>
       </CardContent>
+
       {/* <CardActions>
         <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>

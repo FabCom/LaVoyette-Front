@@ -5,6 +5,7 @@ interface Rendered {
 export interface AcfForPlay {
   abstract: string;
   duration: number;
+	gallery: number[];
 }
 
 export interface Play {
@@ -30,6 +31,7 @@ export interface Partner {
 
 export interface AcfForTayloredPlay {
   abstract: string;
+	gallery: number[];
 }
 export interface TayloredPlay {
 	id: number;
@@ -40,4 +42,10 @@ export interface TayloredPlay {
   publics: number[];
   taylored_plays_tags: number[];
 
+}
+
+export interface Page {
+	id: number;
+	title: Rendered;
+	content: Rendered;
 }

@@ -30,7 +30,7 @@ const TayloredPlays: React.FC = () => {
     <DefaultLayout title='Nos interventions sur-mesure'>
       {!taylored_plays &&   <p>{message}</p>}
       {taylored_plays?.map((play, i: number) => 
-        <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={null} publicIds={play.publics} tagIds={play.taylored_plays_tags}/>
+        <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={null} publicIds={play.publics} tagIds={play.taylored_plays_tags} gallery={play.acf.gallery}/>
       )}
     </DefaultLayout>
   );
