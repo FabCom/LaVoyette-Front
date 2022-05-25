@@ -127,8 +127,8 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
             {parse(content)}
           </animated.div>
           <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-            {medias.map(media => 
-              <Box sx={{display: 'flex', flexDirection: 'row', maxHeight: 200, maxWidth: 300, flexWrap: 'wrap', m: 1}}>
+            {medias.map((media, i) => 
+              <Box key={i} sx={{display: 'flex', flexDirection: 'row', maxHeight: 200, maxWidth: 300, flexWrap: 'wrap', m: 1}}>
                 <CardMedia
                 component="img"
                 className={styles.card}
