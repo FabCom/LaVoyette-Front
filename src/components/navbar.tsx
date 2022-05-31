@@ -15,7 +15,7 @@ import Link from "next/link";
 const pages = [
   { title: "Spectacles", path: "/plays" },
   { title: "Sur-mesure", path: "/taylored" },
-  { title: "A propos", path: "/about" },
+  { title: "La compagnie", path: "/about" },
   { title: "Contact", path: "/contact" },
 ];
 

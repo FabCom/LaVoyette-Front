@@ -7,7 +7,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <DefaultLayout title="À propos">
+    <DefaultLayout title="La compagnie">
       <Typography variant="h2">Qui sommes-nous ?</Typography>
       <WhoWeAre />
       <Typography variant="h2">Nos artistes</Typography>
