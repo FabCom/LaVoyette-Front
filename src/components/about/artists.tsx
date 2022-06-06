@@ -4,7 +4,7 @@ import axios from "axios";
 import { Artist } from "types/wp";
 import { site_api } from "config";
 import CardArtist from "components/cards/card_artist";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const Artists = () => {
   const { isLoading, error, data: artists, isFetching } = useQuery<Artist[], Error>("ArtistsData", () =>
@@ -27,8 +27,8 @@ const Artists = () => {
 
   return (
     <React.Fragment>
-      {!artists &&  <p>{message}</p>}
       <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '90%', justifyContent: 'center'}}>
+        {!artists &&   <Typography variant="body2">{message}</Typography>}
         {artists?.map((artist, i: number) => 
           <CardArtist key={i} name={artist.title.rendered} bio={artist.content.rendered} imgId={artist.featured_media}/>
         )}

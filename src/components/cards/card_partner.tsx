@@ -16,7 +16,7 @@ const CardPartner = ({title, imgId}: {title: string, imgId:number}) => {
   );
 
   return (
-    <Card sx={{width: 200, m:2, p: 2,  display: 'flex', flexDirection: 'column' , alignItems: 'center'}}>
+    <Card sx={{width: 200, m:2, p: 2,  display: 'flex', flexDirection: 'column' , alignItems: 'center',  boxShadow: '2px 2px 3px black', borderRadius: 10, backgroundImage: `url('/design-space-paper-textured-background.jpg')`}}>
       <CardMedia
         component="img"
         height="140"

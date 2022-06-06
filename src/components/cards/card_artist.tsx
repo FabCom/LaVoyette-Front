@@ -20,7 +20,7 @@ const CardArtist = ({name, bio, imgId}: {name: string, bio: string, imgId:number
 
 
   return (
-    <Card sx={{maxWidth: 360, m:2}}>
+    <Card sx={{maxWidth: 360, m:2, boxShadow: '2px 2px 3px black', borderRadius: 10, backgroundImage: `url('/design-space-paper-textured-background.jpg')`}}>
       <CardContent sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <Typography variant="h4">{name}</Typography>
         {imgSrc ? <img width='100' height='100%' src={imgSrc.data.guid.rendered}/> : null}

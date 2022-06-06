@@ -4,7 +4,8 @@ import { useQuery } from "react-query";
 import { Page } from "types/wp";
 import parse from 'html-react-parser';
 import { Box } from "@mui/system";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Typography } from "@mui/material";
 
 
 const WhoWeAre = () => {
@@ -29,10 +30,12 @@ const WhoWeAre = () => {
     // console.log(page)
 
   return (
-    <Box sx={{width: '80%'}}>
-      {!page &&   <p>{message}</p>}
-      {page && parse(page?.content.rendered)}
-    </Box>
+    <React.Fragment>
+      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '80%', justifyContent: 'center', backgroundImage: `url('/design-space-paper-textured-background.jpg')`, p:10, mb:10, boxShadow: '2px 2px 3px black', borderRadius: '50% 20% / 10% 40%'}}>
+        {!page &&   <Typography variant="body2">{message}</Typography>}
+        {page && parse(page?.content.rendered)}
+      </Box>
+    </React.Fragment>
   )
 }
 

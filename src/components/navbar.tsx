@@ -15,7 +15,7 @@ import Link from "next/link";
 const pages = [
   { title: "Spectacles", path: "/plays" },
   { title: "Sur-mesure", path: "/taylored" },
-  { title: "A propos", path: "/about" },
+  { title: "La compagnie", path: "/about" },
   { title: "Contact", path: "/contact" },
 ];
 
@@ -50,12 +50,12 @@ const Navbar = () => {
         <Toolbar disableGutters>
           <Link href={'/'} passHref>
             <Typography
-              variant="h6"
+              variant="h3"
               noWrap
               component="div"
-              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+              sx={{ color: '#fff', cursor:'pointer', mr: 2, display: { xs: "none", md: "flex" } }}
             >
-              La Voyette - Compagnie de théâtre
+              La Voyette
             </Typography>
           </Link>
 

@@ -6,14 +6,15 @@ import DefaultLayout from "components/layouts/default";
 import React from "react";
 
 const About = () => {
+
   return (
-    <DefaultLayout title="À propos">
-      <Typography variant="h2">Qui sommes-nous ?</Typography>
-      <WhoWeAre />
-      <Typography variant="h2">Nos artistes</Typography>
-      <Artists/>
-      <Typography variant="h2">Nos partenaires</Typography>
-      <Partners/>
+    <DefaultLayout title="La compagnie">
+        <Typography variant="h2" sx={{width: '80%',mb: 5}}>Qui sommes-nous ?</Typography>
+        <WhoWeAre />
+        <Typography variant="h2" sx={{width: '80%',mb: 5}}>Nos artistes</Typography>
+        <Artists/>
+        <Typography variant="h2" sx={{width: '80%',mb: 5}}>Nos partenaires</Typography>
+        <Partners/>
     </DefaultLayout>
   )
 }

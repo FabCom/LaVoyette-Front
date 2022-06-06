@@ -13,7 +13,7 @@ import { site_api } from "config";
 import { useSpring, animated } from 'react-spring'
 import { Box, Chip } from "@mui/material";
 import styles from '../../styles/card.module.css'
-import { flexbox, maxHeight } from "@mui/system";
+import Link from "next/link";
 
 const fetchPublicById = (id:number) => {
   const res = axios.get(`${site_api}publics/${id}`).then(({ data }) => data);
@@ -31,7 +31,7 @@ const fetchMediaById = (id:number) => {
 };
 
 
-const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gallery}: {title: string, content: string, imgId: number, duration: number | null, publicIds: number[], tagIds: number[], gallery: number[]}) => {
+const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gallery, link}: {title: string, content: string, imgId: number, duration: number | null, publicIds: number[], tagIds: number[], gallery: number[], link: string | null}) => {
   
   const props_poster = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 500 })
   const props_info = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, delay: 650 })
@@ -46,6 +46,11 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
       enabled: Boolean(imgId)
     }
   );
+
+  let cardWidth = '40%'
+  if (!link) {
+    cardWidth='80%'
+  }
 
   const publics = useQueries(
     publicIds.map(publicId => {
@@ -75,12 +80,15 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
   );
   // console.log(medias)
   return (
-    <Card sx={{ maxWidth: '80%', display: "flex", flexDirection: 'column', mt: 5, alignItems: "center" }}>
-      <CardContent>
-        <Typography gutterBottom variant="h2" component="div">
+    <Card sx={{ width: cardWidth, display: "flex", flexDirection: 'column', mt: 5, alignItems: "center",  boxShadow: '2px 2px 3px black', borderRadius: '50% 20% / 10% 40%', p: 5, backgroundImage: `url('/design-space-paper-textured-background.jpg')` }}>
+      <CardContent >
+        <Typography gutterBottom variant="h3" component="div">
           {title}
         </Typography>
       </CardContent>
+      {link && 
+              <Link href={'/'+ link}><Button variant="contained">Voir</Button></Link>
+            }
       <CardContent sx={{width:'100%', display: "flex", flexDirection: 'row', justifyContent:'center'}}>
         <Box sx={{width: '30%'}}>
           <animated.div style={props_poster}>
@@ -126,7 +134,7 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
           <animated.div style={props_abstract}>
             {parse(content)}
           </animated.div>
-          <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+          {/* <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
             {medias.map((media, i) => 
               <Box key={i} sx={{display: 'flex', flexDirection: 'row', maxHeight: 200, maxWidth: 300, flexWrap: 'wrap', m: 1}}>
                 <CardMedia
@@ -137,7 +145,7 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
                 />
               </Box>
               )}
-          </Box>
+          </Box> */}
         </Box>
       </CardContent>
 

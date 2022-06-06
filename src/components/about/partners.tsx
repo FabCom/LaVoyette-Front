@@ -3,7 +3,7 @@ import { useQuery} from "react-query";
 import axios from "axios";
 import { Partner } from "types/wp";
 import { site_api } from "config";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CardPartner from "components/cards/card_partner";
 
 const Partners = () => {
@@ -27,8 +27,8 @@ const Partners = () => {
 
   return (
     <React.Fragment>
-      {!partners &&  <p>{message}</p>}
       <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '80%', justifyContent: 'center'}}>
+        {!partners &&   <Typography variant="body2">{message}</Typography>}
         {partners?.map((partner, i: number) => 
           <CardPartner key={i} title={partner.title.rendered} imgId={partner.featured_media}/>
         )}
