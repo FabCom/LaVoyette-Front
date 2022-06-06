@@ -50,12 +50,12 @@ const Navbar = () => {
         <Toolbar disableGutters>
           <Link href={'/'} passHref>
             <Typography
-              variant="h6"
+              variant="h3"
               noWrap
               component="div"
-              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+              sx={{ color: '#fff', cursor:'pointer', mr: 2, display: { xs: "none", md: "flex" } }}
             >
-              La Voyette - Compagnie de théâtre
+              La Voyette
             </Typography>
           </Link>
 

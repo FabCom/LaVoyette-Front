@@ -1,6 +1,7 @@
 import { Box } from "@mui/system"
 import axios from "axios"
 import CardPlay from "components/cards/card_play"
+import DefaultLayout from "components/layouts/default"
 import Title from "components/title"
 import { site_api } from "config"
 import { useRouter } from 'next/router'
@@ -34,13 +35,6 @@ const ThisPlay = () => {
  
   })
   
-  
-  // () =>
-  //   axios.get(
-  //     site_api +"plays/" + id
-  //   ).then((res) => res.data)
-  // );
-
   const [message, setMessage] = useState('')
 
   useEffect(() => { 
@@ -56,15 +50,17 @@ const ThisPlay = () => {
     // console.log(play)
   
   return (
-    <Box sx={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
-      <Title title='SPECTACLE' />
-      {!play &&   <p>{message}</p>}
-      {play?.title && 
-      <Box sx={{display:'flex', flexDirection:'column', alignItems:'center'}}>
-        <CardPlay title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays} gallery={play.acf.gallery}/>
+    <DefaultLayout title="Compagnie de théâtre">
+      <Box sx={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
+        <Title title='SPECTACLE' />
+        {!play &&   <p>{message}</p>}
+        {play?.title && 
+        <Box sx={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+          <CardPlay title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays} gallery={play.acf.gallery} link={null}/>
+        </Box>
+        }
       </Box>
-      }
-    </Box>
+    </DefaultLayout>
   )
 }
 
