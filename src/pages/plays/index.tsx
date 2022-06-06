@@ -5,6 +5,7 @@ import { Play } from "types/wp";
 import { site_api } from "config";
 import CardPlay from "components/cards/card_play";
 import DefaultLayout from "components/layouts/default";
+import { Box } from "@mui/material";
 
 const Plays: React.FC = () => {
   const { isLoading, error, data: plays, isFetching } = useQuery<Play[], Error>("PlaysData", () =>
@@ -29,9 +30,13 @@ const Plays: React.FC = () => {
   return (
     <DefaultLayout title='Nos spectacles'>
       {!plays &&   <p>{message}</p>}
+      <Box sx={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-around' }}>
       {plays?.map((play, i: number) => 
-        <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays} gallery={play.acf.gallery}/>
-      )}
+      
+        <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays} gallery={play.acf.gallery} link={'plays/'+ play.id}/>
+        )}
+      </Box>
+
     </DefaultLayout>
   );
 }
