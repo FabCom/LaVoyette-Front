@@ -12,11 +12,11 @@ const DefaultLayout = ({ children, title }: Props): JSX.Element => {
   const props_translate = useSpring({ to: { marginTop: 0, zIndex: 0 }, from: { marginTop: -500 , zIndex: -20}, delay: 600 })
 
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column', backgroundImage: `url('/wall.jpg')`, minHeight: '100vh'}}>
-      <Box sx={{zIndex: 100}}>
+    <Box sx={{display: 'flex', flexDirection: 'column', backgroundImage: `url('/wall-bricks.jpeg')`,  backgroundRepeat: 'no-repeat',backgroundSize: 'cover', minHeight: '100vh', backgroundAttachment: 'fixed'}}>
+      <Box sx={{zIndex: 100, position:'fixed', width: '100%'}}>
         <Navbar />
       </Box>
-      <Box sx={{width: '100%', marginLeft: 0, marginTop: 0}}>
+      <Box sx={{width: '100%', marginLeft: 0, marginTop: 10}}>
         <Title title={title}/>
       </Box>
       <animated.div style={props_translate}>

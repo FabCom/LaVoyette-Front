@@ -30,9 +30,8 @@ const Plays: React.FC = () => {
   return (
     <DefaultLayout title='Nos spectacles'>
       {!plays &&   <p>{message}</p>}
-      <Box sx={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-around' }}>
+      <Box sx={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-around', flexWrap:'wrap' }}>
       {plays?.map((play, i: number) => 
-      
         <CardPlay key={i} title={play.title.rendered} content={play.acf.abstract} imgId={play.featured_media} duration={play.acf.duration} publicIds={play.publics} tagIds={play.tags_plays} gallery={play.acf.gallery} link={'plays/'+ play.id}/>
         )}
       </Box>
