@@ -47,7 +47,7 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
     }
   );
 
-  let cardWidth = '40%'
+  let cardWidth = '45%'
   if (!link) {
     cardWidth='80%'
   }
@@ -62,10 +62,10 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
   );
 
   const tags = useQueries(
-    tagIds.map(tagIds => {
+    tagIds.map(tagId => {
       return {
-        queryKey: ['public', tagIds],
-        queryFn: () => fetchTagsById(tagIds)
+        queryKey: ['tag', tagId],
+        queryFn: () => fetchTagsById(tagId)
       }
     })
   );
@@ -80,14 +80,14 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
   );
   // console.log(medias)
   return (
-    <Card sx={{ width: cardWidth, display: "flex", flexDirection: 'column', mt: 5, alignItems: "center",  boxShadow: '2px 2px 3px black', borderRadius: '50% 20% / 10% 40%', p: 5, backgroundImage: `url('/design-space-paper-textured-background.jpg')` }}>
+    <Card sx={{ minWidth: 500, width: cardWidth, display: "flex", flexDirection: 'column', mt: 5, alignItems: "center",  boxShadow: '2px 2px 3px black', borderRadius: '50% 20% / 10% 40%', p: 5, backgroundImage: `url('/design-space-paper-textured-background.jpg')` }}>
       <CardContent >
         <Typography gutterBottom variant="h3" component="div">
           {title}
         </Typography>
       </CardContent>
       {link && 
-              <Link href={'/'+ link}><Button variant="contained">Voir</Button></Link>
+              <Link href={'/'+ link}><Button variant="contained" size="small">Voir</Button></Link>
             }
       <CardContent sx={{width:'100%', display: "flex", flexDirection: 'row', justifyContent:'center'}}>
         <Box sx={{width: '30%'}}>
@@ -101,32 +101,38 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
             />
           </animated.div>
           <animated.div style={props_info}>
-            <Card sx={{ maxWidth: '100%', display: "flex", flexDirection: 'column', mt: 3 }}>
+            <Card sx={{ maxWidth: '100%', display: "flex", flexDirection: 'column', mt: 3,backgroundColor: 'transparent', border: 'none', boxShadow: 'none' }}>
             {duration && 
-              <CardContent >
-                <Typography gutterBottom variant="body1" component="div">
-                  Durée : <Chip label={duration + " mn"} />
+              <CardContent sx={{textAlign:'center'}}>
+                <Typography gutterBottom variant="h6" component="div">
+                  Durée
                 </Typography>
+                   <Chip label={duration + " mn"} />
               </CardContent>
               }
-              <CardContent >
-                <Typography gutterBottom variant="body1" component="div">
-                  Public : {
-                  publics?.map((item,i) => 
-                    (<Chip key={i} label={item.data?.name} />)
-                  )
-                  }
-                </Typography>
-              </CardContent>
-              <CardContent >
-                <Typography gutterBottom variant="body1" component="div">
-                  Catégories : {
-                  tags?.map((item,i) => 
-                    (<Chip key={i} label={item.data?.name} />)
-                  )
-                  }
-                </Typography>
-              </CardContent>
+              {publics &&
+                <CardContent sx={{textAlign:'center'}}>
+                  <Typography gutterBottom variant="h6" component="div">
+                    Publics
+                  </Typography>
+                    {publics?.map((item,i) => 
+                      (<Chip key={i} label={item.data?.name} size="small"/>)
+                    )
+                    }
+                </CardContent>
+              }
+              {tags &&
+                <CardContent sx={{textAlign:'center'}}>
+                  <Typography gutterBottom variant="h6" component="div">
+                    Catégories 
+                  </Typography>
+                  {
+                    tags?.map((item,i) => 
+                      (<Chip key={i} label={item.data?.name} size="small"/>)
+                    )
+                    }
+                </CardContent>
+              }
             </Card>
           </animated.div>
         </Box>

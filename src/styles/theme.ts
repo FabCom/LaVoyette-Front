@@ -28,7 +28,7 @@ const rawTheme = createTheme({
       dark: green[700],
     },
     text: {
-      primary: '#009ccc',
+      primary: '#000',
     },
   },
   typography: {
@@ -65,23 +65,27 @@ const theme = {
       ...fontHeader,
       letterSpacing: 0,
       fontSize: '5em',
+      color: '#009ccc',
     },
     h2: {
       ...rawTheme.typography.h2,
       ...fontHeader,
       fontSize: '3.5em',
       textShadow: '3px 3px 4px black',
-      textAlign: 'start'
+      textAlign: 'start',
+      color: '#009ccc',
     },
     h3: {
       ...rawTheme.typography.h3,
       ...fontHeader,
       fontSize: 42,
+      color: '#009ccc',
     },
     h4: {
       ...rawTheme.typography.h4,
       ...fontHeader,
       fontSize: 36,
+      color: '#009ccc',
     },
     h5: {
       ...rawTheme.typography.h5,
