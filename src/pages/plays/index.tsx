@@ -11,7 +11,7 @@ const Plays: React.FC = () => {
   const { isLoading, error, data: plays, isFetching } = useQuery<Play[], Error>("PlaysData", () =>
     axios.get(
       site_api +"plays"
-    ).then((res) => res.data)
+    ).then((res) => res.data.reverse())
   );
   
   const [message, setMessage] = useState('')
