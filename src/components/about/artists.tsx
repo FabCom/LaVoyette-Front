@@ -10,7 +10,7 @@ const Artists = () => {
   const { isLoading, error, data: artists, isFetching } = useQuery<Artist[], Error>("ArtistsData", () =>
     axios.get(
       site_api +"artists"
-    ).then((res) => res.data)
+    ).then((res) => res.data.sort((a: Artist,b: Artist) =>  a.title.rendered.split(' ')[1] > b.title.rendered.split(' ')[1] ))
   );
 
   const [message, setMessage] = useState('')

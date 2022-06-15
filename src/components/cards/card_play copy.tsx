@@ -47,7 +47,7 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
     }
   );
 
-  let cardWidth = '25%'
+  let cardWidth = '45%'
   if (!link) {
     cardWidth='80%'
   }
@@ -80,36 +80,85 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
   );
   // console.log(medias)
   return (
-    <Card sx={{width: cardWidth, display: "flex", flexDirection: 'column', mt: 5, alignItems: "center", justifyContent: 'center', borderRadius: 30, background: 'none', overflow: 'initial', p:4  }} className={styles.card}>
-      {/* <CardContent sx={{width: '100%', boxShadow: '2px 2px 3px black', borderRadius: '30% 20% / 10% 40%', p: 2,  backgroundImage: `url('/design-space-paper-textured-background.jpg')` }}>
-        <Typography gutterBottom variant="h3" component="div" sx={{textAlign: 'center'}}>
+    <Card sx={{ minWidth: 500, width: cardWidth, display: "flex", flexDirection: 'column', mt: 5, alignItems: "center",  boxShadow: '2px 2px 3px black', borderRadius: '50% 20% / 10% 40%', p: 5, backgroundImage: `url('/design-space-paper-textured-background.jpg')` }}>
+      <CardContent >
+        <Typography gutterBottom variant="h3" component="div">
           {title}
         </Typography>
-      </CardContent> */}
-      {/* {link && 
+      </CardContent>
+      {link && 
               <Link href={'/'+ link}><Button variant="contained" size="small">Voir</Button></Link>
-            } */}
+            }
+      <CardContent sx={{width:'100%', display: "flex", flexDirection: 'row', justifyContent:'center'}}>
+        <Box sx={{width: '30%'}}>
+          <animated.div style={props_poster}>
+            <CardMedia
+              component="img"
+              className={styles.card}
+              image={imgSrc ? imgSrc.data.guid.rendered : null}
+              alt="Photo mise en avant"
+
+            />
+          </animated.div>
+          <animated.div style={props_info}>
+            <Card sx={{ maxWidth: '100%', display: "flex", flexDirection: 'column', mt: 3,backgroundColor: 'transparent', border: 'none', boxShadow: 'none' }}>
+            {duration && 
+              <CardContent sx={{textAlign:'center'}}>
+                <Typography gutterBottom variant="h6" component="div">
+                  Durée
+                </Typography>
+                   <Chip label={duration + " mn"} />
+              </CardContent>
+              }
+              {publics &&
+                <CardContent sx={{textAlign:'center'}}>
+                  <Typography gutterBottom variant="h6" component="div">
+                    Publics
+                  </Typography>
+                    {publics?.map((item,i) => 
+                      (<Chip key={i} label={item.data?.name} size="small"/>)
+                    )
+                    }
+                </CardContent>
+              }
+              {tags &&
+                <CardContent sx={{textAlign:'center'}}>
+                  <Typography gutterBottom variant="h6" component="div">
+                    Catégories 
+                  </Typography>
+                  {
+                    tags?.map((item,i) => 
+                      (<Chip key={i} label={item.data?.name} size="small"/>)
+                    )
+                    }
+                </CardContent>
+              }
+            </Card>
+          </animated.div>
+        </Box>
+        <Box sx={{width: '70%', ml: 2}}>
+          <animated.div style={props_abstract}>
+            {parse(content)}
+          </animated.div>
+          {/* <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+            {medias.map((media, i) => 
+              <Box key={i} sx={{display: 'flex', flexDirection: 'row', maxHeight: 200, maxWidth: 300, flexWrap: 'wrap', m: 1}}>
+                <CardMedia
+                component="img"
+                className={styles.card}
+                image={media.data?.guid.rendered}
+                alt="Photo mise en avant"
+                />
+              </Box>
+              )}
+          </Box> */}
+        </Box>
+      </CardContent>
 
       {/* <CardActions>
         <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
       </CardActions> */}
-      <CardContent sx={{width:'100%', display: "flex", flexDirection: 'row', justifyContent:'center'}}>
-        <Box sx={{position: 'relative'}}>
-          <animated.div style={props_poster}>
-            <CardMedia
-              component="img"
-              
-              image={imgSrc ? imgSrc.data.guid.rendered : null}
-              alt="Photo mise en avant"
-              sx={{ width: '100%'}}
-            />
-            <Typography gutterBottom variant="h3" component="div" sx={{position: 'absolute',bottom: 10, textAlign: 'center'}}>
-              {title}
-            </Typography>
-          </animated.div>
-        </Box>
-      </CardContent>
     </Card>
   )
 }
