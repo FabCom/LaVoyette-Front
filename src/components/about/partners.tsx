@@ -27,7 +27,7 @@ const Partners = () => {
 
   return (
     <React.Fragment>
-      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '80%', justifyContent: 'center'}}>
+      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '100%', justifyContent: 'center'}}>
         {!partners &&   <Typography variant="body2">{message}</Typography>}
         {partners?.map((partner, i: number) => 
           <CardPartner key={i} title={partner.title.rendered} imgId={partner.featured_media}/>

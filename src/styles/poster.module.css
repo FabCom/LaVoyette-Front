@@ -4,9 +4,10 @@
   text-align: center;
   display: inline-block;
   margin: 20px auto 10px;
+  transition: all .2s ease-in-out;
 }
 .imgtape:before, .imgtape:after {
-  background: rgba(255,255,235,0.6);
+  background: rgba(255, 235, 235, 0.7);
   box-shadow: 0 1px 3px rgba(0,0,0,0.4);
   content: "";
   display: block;
@@ -15,22 +16,28 @@
   margin: auto;
   width: 100px;
 }
-.imgtape img {
-  background: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+.imgtape > img:hover {
+  box-shadow: 5px 5px 8px rgba(0,0,0,1);
+}
+
+.imgtape > img {
+  background: #000;
+  border: 1px solid #000;
+  box-shadow: 0 3px 5px rgba(0,0,0,1);
   display: inline-block;
   height: auto;
   margin: 0 20px;
-  max-width: 100%;
+  max-width: 90%;
   padding: 8px;
   text-align: center;
   vertical-align: top;
+  cursor: pointer;
 }
+
 .imgtape1:before {
   left: 50%;
-  margin-left: -50px;
-  top: -10px;
+  margin-left: -40px;
+  top: 0px;
 }
 .imgtape1:after {
   display: none;
@@ -52,7 +59,7 @@
 }
 .imgtape3:after {
   bottom: 10px;
-  right: 0;
+  right: -10px;
   transform: rotate(-35deg);
 }
 .imgtape4:before {

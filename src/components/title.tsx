@@ -6,7 +6,7 @@ const Title = ({title}:{title: string}) => {
 
   return (
     <animated.div style={props_translate}>
-      <Box sx={{position: 'relative',width: '100%', height: 200, display:'flex', zIndex: 50, justifyContent:'center', textAlign: 'center', alignItems:'center',m:0, marginBottom: 5}}>
+      <Box sx={{position: 'relative',width: '100%', height: 200, display:'flex', zIndex: 50, justifyContent:'center', textAlign: 'center', alignItems:'center',m:0}}>
         <Typography variant='h1' sx={{textShadow: '3px 3px 4px black'}} >{title}</Typography>
       </Box>
     </animated.div>

@@ -1,18 +1,7 @@
-import { useQueries, useQuery} from "react-query";
+import { useQuery} from "react-query";
 import axios from "axios";
-import parse from 'html-react-parser';
-
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
 import { site_api } from "config";
-
-import { useSpring, animated } from 'react-spring'
-import { Box, Chip } from "@mui/material";
-import styles from '../../styles/card.module.css'
 import Link from "next/link";
 import Poster from "./card_poster";
 
@@ -33,10 +22,9 @@ const CardPlay = ({title, content, imgId, duration=null, publicIds, tagIds, gall
     cardWidth='80%'
     link='/plays'
   }
-
   
   return (
-    <Poster width='25%' tapeType='1'>
+    <Poster width='25%' tapeType='imgtape3'>
       <Link href={link}>
         <CardMedia
           component="img"
