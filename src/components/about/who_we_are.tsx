@@ -6,6 +6,7 @@ import parse from 'html-react-parser';
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
+import Poster from "components/cards/card_poster";
 
 
 const WhoWeAre = () => {
@@ -30,12 +31,12 @@ const WhoWeAre = () => {
     // console.log(page)
 
   return (
-    <React.Fragment>
-      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', width: '80%', justifyContent: 'center', backgroundImage: `url('/design-space-paper-textured-background.jpg')`, p:10, mb:10, boxShadow: '2px 2px 3px black', borderRadius: '50% 20% / 10% 40%'}}>
+    <Poster width='80%' tapeType="imgtape1">
+      <Box sx={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', backgroundImage: `url('/design-space-paper-textured-background.jpg')`, p:10, mb:10, boxShadow: '2px 2px 3px black'}}>
         {!page &&   <Typography variant="body2">{message}</Typography>}
         {page && parse(page?.content.rendered)}
       </Box>
-    </React.Fragment>
+    </Poster>
   )
 }
 
